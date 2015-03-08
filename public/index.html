@@ -18,11 +18,7 @@
     <div id="gridList" layout="column">
       <md-grid-list md-cols="5" md-gutter="8px" md-row-height="2:2">
         <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="album in albums">
-          <md-card><img ng-src="{{album.imageUrl}}" style="max-width=100%"></md-card>
-          <md-grid-tile-footer>
-            <h3>{{album.title}}<span class="paragraph-end"></span></h3>
-            <h4>{{album.artist}}</h4>
-          </md-grid-tile-footer>
+          <jc-item data="album"></jc-item>
         </md-grid-tile>
       </md-grid-list>
     </div>
