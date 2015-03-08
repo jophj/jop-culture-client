@@ -1,0 +1,17 @@
+body{
+  background: #e5e5e5;
+}
+#gridList md-grid-tile-footer{
+  margin: 8px;
+  background: none repeat scroll 0% 0% rgba(0, 0, 0, 0.24);
+}
+#gridList figcaption{
+  position: relative;
+  max-width: 100%;
+}
+#gridList figcaption h3{
+  margin-right: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;  
+}

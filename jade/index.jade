@@ -1,0 +1,27 @@
+doctype
+html(ng-app="StarterApp")
+  head
+    meta(charset='utf-8')
+    title JoP Culture
+    meta(name='description', content='')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.css')
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=RobotoDraft:100,200,300,400")
+    link(rel="stylesheet", href="style.css")
+
+  body(ng-controller="AppCtrl")
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.js')
+    script(src='script/app.js')
+
+    div#gridList(layout="column")
+      md-grid-list(md-cols="5", md-gutter="8px", md-row-height="2:2")
+        md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="album in albums")
+          md-card
+            img(ng-src="{{album.imageUrl}}", style="max-width=100%")
+          md-grid-tile-footer
+            h3 {{album.title}}
+              span.paragraph-end
+            h4 {{album.artist}}
