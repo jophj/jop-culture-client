@@ -16,11 +16,7 @@
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.js"></script>
     <script src="script/app.js"></script>
     <div id="gridList" layout="column">
-      <md-grid-list md-cols="5" md-gutter="8px" md-row-height="2:2">
-        <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="album in albums">
-          <jc-item data="album"></jc-item>
-        </md-grid-tile>
-      </md-grid-list>
+      <jc-grid items="items"></jc-grid>
     </div>
   </body>
 </html>

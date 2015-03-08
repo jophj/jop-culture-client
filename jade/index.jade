@@ -17,6 +17,4 @@ html(ng-app="StarterApp")
     script(src='script/app.js')
 
     div#gridList(layout="column")
-      md-grid-list(md-cols="5", md-gutter="8px", md-row-height="2:2")
-        md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="album in albums")
-          jc-item(data="album")
+      jc-grid(items="items")

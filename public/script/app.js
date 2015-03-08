@@ -18,14 +18,14 @@ app.directive('myCustomer', function() {
 /**
  An item element. Could be an album or a movie etc..
 */
-app.directive('jcItem', function(){
+app.directive('jcGrid', function(){
   return{
     restrict: 'E',
     transclude: true,
     scope: {
-      item: '=data'
+      items: '=items'
     },
-    templateUrl: 'jc-item.html',
+    templateUrl: 'jc-grid.html',
     controller: function($scope){
       console.log($scope.album);
     }
@@ -34,10 +34,10 @@ app.directive('jcItem', function(){
 
 app.controller('AppCtrl', ['$scope', 'Music', function($scope, Music){
 
-  $scope.albums = [];
+  $scope.items = [];
 
   Music.saved().then(function(response){
-    $scope.albums = response.data.albums;
+    $scope.items = response.data.albums;
   });
 
 }]);
