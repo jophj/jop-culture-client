@@ -26,9 +26,6 @@ app.directive('jcGrid', function(){
       items: '=items'
     },
     templateUrl: 'jc-grid.html',
-    controller: function($scope){
-      console.log($scope.album);
-    }
   };
 });
 

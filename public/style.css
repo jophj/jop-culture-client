@@ -1,5 +1,17 @@
 body{
-  background: #e5e5e5;
+  height: 100%;
+}
+md-content{
+}
+#main{
+  height: 100%;
+}
+#main > .container{
+  height: 100%;
+  width: 100%;
+}
+#gridList{
+  padding: 32px;
 }
 #gridList md-grid-tile-footer{
   margin: 8px;
@@ -14,4 +26,53 @@ body{
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;  
+}
+
+#sidenav{
+  margin-right: 12px;
+}
+ul.nav{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  font-size: 18px;
+  font-weight: 300;
+  color: rgb(85,85,85)
+}
+.nav > li{
+  height: 48px;
+}
+.nav > li > a,
+.nav > li > a > div{
+  height: 100%;
+}
+.nav > li > a > div > .icon{
+  width: 65px;
+  padding-top: 12px;
+  padding-left: 32px;
+}
+.nav > li > a > div > .icon > img{
+  color: white;
+  height: 24px;
+}
+.nav > li > a > div > .text{
+  padding-top: 12px;
+  padding-left: 8px;
+}
+
+.nav > li:hover{
+  color: white;
+}
+.nav > li.orange .icon,
+.nav > li.orange:hover{
+  background-color: #fb8521;
+}
+.nav > li.azure .icon,
+.nav > li.azure:hover{
+  background-color: #1aa1e1;
+}
+.nav > li.red .icon,
+.nav > li.red:hover{
+  background-color: #ce5043;
 }

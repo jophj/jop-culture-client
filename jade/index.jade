@@ -16,5 +16,33 @@ html(ng-app="StarterApp")
     script(src='//ajax.googleapis.com/ajax/libs/angular_material/0.8.1/angular-material.min.js')
     script(src='script/app.js')
 
-    div#gridList(layout="column")
-      jc-grid(items="items")
+    div#main(role="main", layout="row")
+      nav#sidenav(flex="15")
+        md-content.md-whiteframe-z2
+          div(md-is-locked-open="true")
+            ul.nav(role="navigation")
+              li.orange
+                a
+                  div(layout="row")
+                    div.icon
+                      img(src="./icons/ic_album_black_18dp.png")
+                    div.text
+                      span Music
+              li.red
+                a
+                  div(layout="row")
+                    div.icon
+                      img(src="./icons/ic_album_black_18dp.png")
+                    div.text
+                      span Movies
+              li.azure
+                a
+                  div(layout="row")
+                    div.icon
+                      img(src="./icons/ic_album_black_18dp.png")
+                    div.text
+                      span Books
+
+      md-content.container(layout="column")
+        section(flex)#gridList
+          jc-grid(items="items")
