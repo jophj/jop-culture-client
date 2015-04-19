@@ -1,8 +1,6 @@
 body{
   height: 100%;
 }
-md-content{
-}
 #main{
   height: 100%;
 }
@@ -12,6 +10,9 @@ md-content{
 }
 #gridList{
   padding: 32px;
+}
+#gridList md-grid-tile{
+  transition: all 400ms ease-out 50ms;
 }
 #gridList md-grid-tile-footer{
   margin: 8px;
@@ -62,19 +63,24 @@ ul.nav{
   padding-left: 8px;
 }
 
-.nav > li:hover{
+.nav > li:hover,
+.nav > li.selected
+{
   cursor: pointer;
   color: white;
 }
 .nav > li.orange .icon,
-.nav > li.orange:hover{
+.nav > li.orange:hover,
+.nav > li.orange.selected{
   background-color: #fb8521;
 }
-.nav > li.azure .icon,
-.nav > li.azure:hover{
-  background-color: #1aa1e1;
-}
 .nav > li.red .icon,
-.nav > li.red:hover{
+.nav > li.red:hover,
+.nav > li.red.selected{
   background-color: #ce5043;
+}
+.nav > li.azure .icon,
+.nav > li.azure:hover,
+.nav > li.azure.selected{
+  background-color: #1aa1e1;
 }
