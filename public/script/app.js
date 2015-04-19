@@ -2,6 +2,7 @@ var app = angular.module('StarterApp', ['ngMaterial']);
 
 app.factory('Music', function($http){
   var MUSIC_API = 'https://jop-culture.herokuapp.com/music/';
+  //var MUSIC_API = 'http://localhost:3666/music/';
   return {
     saved: function(){
       return $http.get(MUSIC_API+ 'saved');
@@ -36,5 +37,4 @@ app.controller('AppCtrl', ['$scope', 'Music', function($scope, Music){
   Music.saved().then(function(response){
     $scope.items = response.data.albums;
   });
-
 }]);

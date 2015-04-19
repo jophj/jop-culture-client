@@ -29,6 +29,7 @@ md-content{
 }
 
 #sidenav{
+  margin-top: 40px;
   margin-right: 12px;
 }
 ul.nav{
@@ -62,6 +63,7 @@ ul.nav{
 }
 
 .nav > li:hover{
+  cursor: pointer;
   color: white;
 }
 .nav > li.orange .icon,

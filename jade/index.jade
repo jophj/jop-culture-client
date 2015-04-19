@@ -17,6 +17,7 @@ html(ng-app="StarterApp")
     script(src='script/app.js')
 
     div#main(role="main", layout="row")
+      
       nav#sidenav(flex="15")
         md-content.md-whiteframe-z2
           div(md-is-locked-open="true")
@@ -25,24 +26,25 @@ html(ng-app="StarterApp")
                 a
                   div(layout="row")
                     div.icon
-                      img(src="./icons/ic_album_black_18dp.png")
+                      img(src="./icons/headphones_ffffff_24.png")
                     div.text
                       span Music
               li.red
                 a
                   div(layout="row")
                     div.icon
-                      img(src="./icons/ic_album_black_18dp.png")
+                      img(src="./icons/film_ffffff_24.png")
                     div.text
                       span Movies
+                      
               li.azure
                 a
                   div(layout="row")
                     div.icon
-                      img(src="./icons/ic_album_black_18dp.png")
+                      img(src="./icons/book_ffffff_24.png")
                     div.text
                       span Books
 
       md-content.container(layout="column")
-        section(flex)#gridList
+        section.md-padding(flex)#gridList
           jc-grid(items="items")
