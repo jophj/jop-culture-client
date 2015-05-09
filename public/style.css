@@ -8,11 +8,12 @@ body{
   height: 100%;
   width: 100%;
 }
+.grid-container{
+  margin-left: 15%;
+  overflow-x: auto;
+}
 #gridList{
   padding: 32px;
-}
-#gridList md-grid-tile{
-  transition: all 400ms ease-out 50ms;
 }
 #gridList md-grid-tile-footer{
   margin: 8px;
@@ -29,9 +30,16 @@ body{
   overflow: hidden;  
 }
 
+#gridList .loading{
+  margin-top: 48px;
+}
+
 #sidenav{
-  margin-top: 40px;
-  margin-right: 12px;
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 15%;
+  z-index: 1;
 }
 ul.nav{
   list-style: none;

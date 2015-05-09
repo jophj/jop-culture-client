@@ -11,16 +11,16 @@
   </head>
   <body ng-controller="AppCtrl">
     <div id="main" role="main" layout="row">
-      <nav id="sidenav" flex="15">
+      <nav id="sidenav">
         <md-content class="md-whiteframe-z2">
           <div md-is-locked-open="true">
             <ul role="navigation" class="nav">
-              <li class="orange selected"><a>
+              <li ng-class="selectedClass['music']" class="orange"><a ng-click="sectionClicked('music')">
                   <div layout="row">
                     <div class="icon"><img src="./icons/headphones_ffffff_24.png"></div>
                     <div class="text"><span>Music</span></div>
                   </div></a></li>
-              <li class="red"><a>
+              <li ng-class="selectedClass['movies']" class="red"><a ng-click="sectionClicked('movies')">
                   <div layout="row">
                     <div class="icon"><img src="./icons/film_ffffff_24.png"></div>
                     <div class="text"><span>Movies</span></div>
@@ -34,8 +34,8 @@
           </div>
         </md-content>
       </nav>
-      <md-content layout="column" scroll-load class="container">
-        <div ng-controller="gridCtrl">
+      <md-content layout="column" ng-controller="gridCtrl" class="container">
+        <div scroll-load on-scroll-end="loadMore" class="grid-container">
           <section flex id="gridList" class="md-padding">
             <md-grid-list md-cols-gt-md="5" md-cols-md="4" md-cols-sm="1" md-row-height="1:1">
               <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items">
@@ -46,13 +46,18 @@
                 </md-grid-tile-footer>
               </md-grid-tile>
             </md-grid-list>
+            <div ng-show="loading" class="loading">
+              <div layout="row" layout-align="space-around">
+                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+              </div>
+            </div>
           </section>
         </div>
       </md-content>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angular_material/0.8.3/angular-material.min.js"></script>
     <script src="script/app.js"></script>
   </body>
