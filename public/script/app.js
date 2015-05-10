@@ -1,3 +1,4 @@
+/* global angular */
 var app = angular.module('StarterApp', ['ngMaterial']);
 /**
   Section names are:
@@ -13,7 +14,7 @@ app.factory('Music', function($http){
     saved: function(offset, limit){
       return $http.get(MUSIC_API+ 'saved', {params: {"limit": limit, "offset": offset}});
     }
-  }
+  };
 });
 app.factory('Movies', function($http){
   var MUSIC_API = 'https://jop-culture.herokuapp.com/music/';
@@ -22,24 +23,24 @@ app.factory('Movies', function($http){
     saved: function(offset, limit){
       return $http.get(MUSIC_API+ 'saved', {params: {"limit": limit, "offset": offset}});
     }
-  }
+  };
 });
 
 app.factory('DataProvider', ['Music', 'Movies', function(Music, Movies){
 
   /* Here's the configurations of data providers */
-  providers = {
+  var providers = {
     "music": {
       "saved": Music.saved
     },
     "movies": {
       "saved": Movies.saved
     }
-  }
+  };
 
-  selector = function(source){
+  var selector = function(source){
     return providers[source];
-  }
+  };
   return selector;
 }]);
 
@@ -72,7 +73,7 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
         },
           function(error){
             dataService.isLoading = false;
-            console.log(error);
+            //console.log(error);
           });
       }
     }
@@ -93,9 +94,9 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
       isLoading: false,
       loadMore: new Loader('movies').loadMore
     }
-  }
+  };
 
-  selector = function(source){
+  var selector = function(source){
     return dataServices[source];
   }
   return selector;
@@ -114,16 +115,16 @@ app.controller('AppCtrl', [
         "movies": {
           "selected": $scope.section == 'movies'
         }
-      }
-    }
+      };
+    };
 
     $scope.sectionClicked = function (section) {
       $window.location.hash = '/'+section;
       $scope.section = section;
       $scope.selectedClass = buildSelectedClass();
-    }
+    };
     
-    hash = $window.location.hash;
+    var hash = $window.location.hash;
 
     var regexp = /^#\/([^\/]+)\/?.*$/;
     var match = regexp.exec(hash);
@@ -152,7 +153,7 @@ app.controller('gridCtrl', [
 
     $scope.loadMore = function(){
       DataService($scope.section).loadMore();
-    }
+    };
 
     $scope.$watch('section', function(newValue, oldValue){
       $scope.items = DataService(newValue).cachedData;
@@ -176,14 +177,17 @@ app.directive('scrollLoad', function($timeout){
       onScrollEnd: '='
     },
 
-    link: function(scope, element, attrs){
+    link: function (scope, element, attrs){
+      var gridElement = element[0];
       element.bind('scroll', function(evt){
         var scroll = element[0].scrollTop + element[0].parentElement.scrollHeight;
         var scrollRelative = scroll - element[0].scrollHeight;
-        if (Math.abs(scrollRelative) <= 1){
+        
+        var bottomSpace = element[0].scrollHeight - element[0].parentElement.scrollHeight; 
+        if (Math.abs(scrollRelative) <= 1 || bottomSpace > 40 ){
           scope.onScrollEnd();
         }
       });
     }
-  }
+  };
 });
