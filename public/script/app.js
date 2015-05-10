@@ -182,7 +182,16 @@ app.controller('gridCtrl', [
 ]);
 
 
-app.directive('scrollLoad', function($timeout){
+app.directive('loadingFallback', function(){
+  return{
+    restrict: 'A',
+    link: function(scope, element, attrs){
+      element[0].src = './icons/ic_album_48px.svg';
+    }
+  };
+});
+
+app.directive('scrollLoad', function(){
   return{
 
     restrict: 'A',

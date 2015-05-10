@@ -20,12 +20,15 @@ body{
 #gridList{
   padding: 32px;
 }
+#gridList md-card{
+  width: 100%;
+}
 #gridList md-grid-tile.ng-enter {
-  transition:0.5s linear all;
-  opacity:0;
+  transition: 0.5s ease-in opacity;
+  opacity: 0;
 }
 #gridList md-grid-tile.ng-enter.ng-enter-active {
-  opacity:1;
+  opacity: 1;
 }
 #gridList md-grid-tile-footer{
   margin: 8px;
