@@ -46,9 +46,11 @@
                 </md-grid-tile-footer>
               </md-grid-tile>
             </md-grid-list>
-            <div ng-show="loading" class="loading">
+            <div class="loading">
               <div layout="row" layout-align="space-around">
-                <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                <div ng-show="loading">
+                  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+                </div>
               </div>
             </div>
           </section>

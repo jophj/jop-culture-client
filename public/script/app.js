@@ -47,19 +47,19 @@ app.factory('DataProvider', ['Music', 'Movies', function(Music, Movies){
 
 app.factory('DataService', ['DataProvider', function(DataProvider){
 
-  var LIMIT = 15;   // number of items retrieved (if any)
+  var LIMIT = 5;   // number of items retrieved (if any)
   var Loader = function(section){
     this.section = section;
 
     //TODO BUG backend. Loading from offset i build first album even if is already build
     // at offset i-1 thus, duplicating album.
-    this.loadMore = function(){
+    this.loadMore = function(callback){
       var dataService = dataServices[section];
 
       var offset = dataService.offset;
       var oldOffset = dataService.oldOffset;
 
-      if (oldOffset < offset){
+      if (oldOffset < offset && !dataService.isLoading){
         dataService.isLoading = true;
         DataProvider(section).saved(offset, LIMIT).then(
 
@@ -70,14 +70,19 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
             dataService.oldOffset = offset;
             dataService.offset = response.data.offset;
             dataService.isLoading = false;
+            
+            if (callback)
+              callback();
         },
           function(error){
             dataService.isLoading = false;
+            if (callback)
+              callback(error);
             //console.log(error);
           });
       }
-    }
-  }
+    };
+  };
 
   var dataServices = {
     "music": {
@@ -142,26 +147,34 @@ app.controller('AppCtrl', [
 
 
 app.controller('gridCtrl', [
-  '$scope','DataService',
-  function($scope, DataService){
+  '$scope','$element', 'DataService',
+  function($scope, $element, DataService){
 
-    // Number of elements in the page. Page must be initialized with at least
-    // pageSize items (until scroll bar is visible) because data loading only
-    // happen when scrollbar reaches bottom
-    var pageSize = 15; 
+    var containerElement = $element[0];
+    var gridElement = $element[0].children[0];
+
+    var isFull = function(){
+      var margin = containerElement.scrollHeight - gridElement.scrollHeight;
+      return margin < 0;
+    }
     $scope.loading = false;
 
     $scope.loadMore = function(){
-      DataService($scope.section).loadMore();
+      $scope.loading = true;
+      DataService($scope.section).loadMore(loadCallback);
+    };
+    
+    var loadCallback = function (error) {
+      $scope.loading = false;
+      if (!isFull()){
+        $scope.loadMore();
+      }
     };
 
     $scope.$watch('section', function(newValue, oldValue){
       $scope.items = DataService(newValue).cachedData;
-      $scope.loading = DataService(newValue).isLoading;
 
-      if ($scope.items.length < pageSize){
-        $scope.loadMore();
-      }
+      $scope.loadMore();
     });
 
     //TODO the watcher for $scope.section that loads data
@@ -183,7 +196,7 @@ app.directive('scrollLoad', function($timeout){
         var scroll = element[0].scrollTop + element[0].parentElement.scrollHeight;
         var scrollRelative = scroll - element[0].scrollHeight;
         
-        var bottomSpace = element[0].scrollHeight - element[0].parentElement.scrollHeight; 
+        var bottomSpace = element[0].parentElement.scrollHeight - element[0].scrollHeight; 
         if (Math.abs(scrollRelative) <= 1 || bottomSpace > 40 ){
           scope.onScrollEnd();
         }
