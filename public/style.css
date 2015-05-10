@@ -35,7 +35,8 @@ body{
   position: relative;
   max-width: 100%;
 }
-#gridList figcaption h3{
+#gridList figcaption > h3,
+#gridList figcaption > h4{
   margin-right: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
