@@ -9,7 +9,7 @@ var app = angular.module('StarterApp', ['ngMaterial']);
 */
 app.factory('Music', function($http){
   var MUSIC_API = 'https://jop-culture.herokuapp.com/music/';
-  //var MUSIC_API = 'http://localhost:3666/music/';
+  //MUSIC_API = 'http://localhost:3666/music/';
   return {
     saved: function(offset, limit){
       return $http.get(MUSIC_API+ 'saved', {params: {"limit": limit, "offset": offset}});
@@ -81,22 +81,32 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
             //console.log(error);
           });
       }
+      else{
+        dataService.hasMoreData = false;
+        dataService.isLoading = false;
+        if(callback)
+          callback();
+      }
     };
   };
 
   var dataServices = {
     "music": {
       cachedData: [],
+      name: 'Music',
       offset: 0,
       oldOffset: -1,
       isLoading: false,
+      hasMoreData: true,
       loadMore: new Loader('music').loadMore
     },
     "movies": {
       cachedData: [],
+      name: 'Movies',
       offset: 0,
       oldOffset: -1,
       isLoading: false,
+      hasMoreData: true,
       loadMore: new Loader('movies').loadMore
     }
   };
@@ -145,6 +155,22 @@ app.controller('AppCtrl', [
   }
 ]);
 
+app.controller('sidenavCtrl', [
+  '$scope','$mdUtil','$mdSidenav',
+  function($scope, $mdUtil, $mdSidenav){
+    $scope.toggleLeft = buildToggler('left');
+
+    function buildToggler(navID) {
+      var debounceFn =  $mdUtil.debounce(function(){
+        $mdSidenav(navID)
+          .toggle()
+          .then(function () {
+          });
+      },300);
+      return debounceFn;
+    }
+  }
+]);
 
 app.controller('gridCtrl', [
   '$scope','$element', 'DataService',
@@ -157,32 +183,40 @@ app.controller('gridCtrl', [
       var margin = containerElement.scrollHeight - gridElement.scrollHeight;
       return margin < 0;
     }
+
     $scope.loading = false;
 
     $scope.loadMore = function(){
-      $scope.loading = true;
-      DataService($scope.section).loadMore(loadCallback);
+      if (!$scope.loading){
+        $scope.loading = true;
+        console.log('load more data');
+        DataService($scope.section).loadMore(loadCallback);
+      }
     };
     
     var loadCallback = function (error) {
+      console.log('loadCallback');
       $scope.loading = false;
-      if (!isFull()){
+      if (!isFull() && DataService($scope.section).hasMoreData){
         $scope.loadMore();
       }
     };
 
-    $scope.$watch('section', function(newValue, oldValue){
-      $scope.items = DataService(newValue).cachedData;
-
+    $scope.$watch('searchString', function(newValue, oldValue){
       $scope.loadMore();
     });
 
-    //TODO the watcher for $scope.section that loads data
+    $scope.$watch('section', function(newValue, oldValue){
+      $scope.items = DataService(newValue).cachedData;
+      $scope.gridTitle = DataService(newValue).name;
+
+      $scope.loadMore();
+    });
   }
 ]);
 
 
-app.directive('loadingFallback', function(){
+app.directive('imgFallback', function(){
   return{
     restrict: 'A',
     link: function(scope, element, attrs){

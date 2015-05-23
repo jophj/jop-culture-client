@@ -11,11 +11,20 @@ html(ng-app="StarterApp")
 
   body(ng-controller="AppCtrl")
 
+    div(layout="column")
+      md-toolbar.md-whiteframe-z2
+        div(layout="row")
+          div.md-toolbar-tools
+            span JoP's Culture
+
     div#main(role="main", layout="row")
       
-      nav#sidenav
+      // TODO apply controller to parent, YOLO
+      md-sidenav.md-sidenav-left(
+        md-component-id="left",
+        md-is-locked-open="$mdMedia('gt-md')")
         md-content.md-whiteframe-z2
-          div(md-is-locked-open="true")
+          div
             ul.nav(role="navigation")
               li.orange(ng-class="selectedClass['music']")
                 a(ng-click="sectionClicked('music')")
@@ -43,10 +52,20 @@ html(ng-app="StarterApp")
       md-content.container(layout="column", ng-controller="gridCtrl")
         div.grid-container(scroll-load, on-scroll-end="loadMore")
           section.md-padding(flex)#gridList
+
+            div(layout="row")
+              div#gridTitle
+                h3 {{gridTitle}}
+              div#searchField(layout="row", layout-align="end center", flex)
+                md-input-container(md-no-float, flex="33")
+                  input(ng-model="searchString", placeholder="Search", aria-label="Search")
+
+          
             md-grid-list(md-cols-gt-md="5", md-cols-md="4", md-cols-sm="1", md-row-height="1:1")
-              md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="item in items")
+              md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="item in items | filter: searchString")
                 md-card
-                  img(loading-fallback, ng-src="{{item.imageUrl}}")
+                  //img(img-fallback, ng-src="./icons/ic_album_48px.svg")
+                  img(img-fallback, ng-src="{{item.imageUrl}}")
                 md-grid-tile-footer
                   figcaption
                     h3 {{item.title}}

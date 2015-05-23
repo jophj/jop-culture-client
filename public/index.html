@@ -10,10 +10,18 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body ng-controller="AppCtrl">
+    <div layout="column">
+      <md-toolbar class="md-whiteframe-z2">
+        <div layout="row">
+          <div class="md-toolbar-tools"><span>JoP's Culture</span></div>
+        </div>
+      </md-toolbar>
+    </div>
     <div id="main" role="main" layout="row">
-      <nav id="sidenav">
+      <!-- TODO apply controller to parent, YOLO-->
+      <md-sidenav md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" class="md-sidenav-left">
         <md-content class="md-whiteframe-z2">
-          <div md-is-locked-open="true">
+          <div>
             <ul role="navigation" class="nav">
               <li ng-class="selectedClass['music']" class="orange"><a ng-click="sectionClicked('music')">
                   <div layout="row">
@@ -33,13 +41,25 @@
             </ul>
           </div>
         </md-content>
-      </nav>
+      </md-sidenav>
       <md-content layout="column" ng-controller="gridCtrl" class="container">
         <div scroll-load on-scroll-end="loadMore" class="grid-container">
           <section flex id="gridList" class="md-padding">
+            <div layout="row">
+              <div id="gridTitle">
+                <h3>{{gridTitle}}</h3>
+              </div>
+              <div id="searchField" layout="row" layout-align="end center" flex>
+                <md-input-container md-no-float flex="33">
+                  <input ng-model="searchString" placeholder="Search" aria-label="Search">
+                </md-input-container>
+              </div>
+            </div>
             <md-grid-list md-cols-gt-md="5" md-cols-md="4" md-cols-sm="1" md-row-height="1:1">
-              <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items">
-                <md-card><img loading-fallback ng-src="{{item.imageUrl}}"></md-card>
+              <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
+                <md-card>
+                  <!--img(img-fallback, ng-src="./icons/ic_album_48px.svg")--><img img-fallback ng-src="{{item.imageUrl}}">
+                </md-card>
                 <md-grid-tile-footer>
                   <figcaption>
                     <h3>{{item.title}}</h3>
