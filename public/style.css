@@ -28,7 +28,7 @@ body{
   overflow-y: scroll;
 }
 #gridList{
-  padding: 32px;
+  padding-bottom: 32px;
 }
 #gridList md-card{
   width: 100%;
@@ -57,8 +57,9 @@ body{
 }
 
 #gridList footer{
-  margin-top: 48px;
-  height: 50px;
+  margin-top: 32px;
+  height: 82px;
+  margin-bottom: 32px;
 }
 
 md-sidenav.md-locked-open{
@@ -91,6 +92,9 @@ ul.nav{
   width: 65px;
   padding-top: 12px;
   padding-left: 32px;
+}
+.nav > li > a > div > .icon svg{
+  fill: white;
 }
 .nav > li > a > div > .icon > img{
   color: white;

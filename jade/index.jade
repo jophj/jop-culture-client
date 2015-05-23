@@ -30,14 +30,14 @@ html(ng-app="StarterApp")
                 a(ng-click="sectionClicked('music')")
                   div(layout="row")
                     div.icon
-                      img(src="./icons/headphones_ffffff_24.png")
+                      md-icon(md-svg-icon="./icons/ic_headset_24px.svg")
                     div.text
                       span Music
               li.red(ng-class="selectedClass['movies']")
                 a(ng-click="sectionClicked('movies')")
                   div(layout="row")
                     div.icon
-                      img(src="./icons/film_ffffff_24.png")
+                      md-icon(md-svg-icon="./icons/ic_local_movies_24px.svg")
                     div.text
                       span Movies
                       
@@ -45,7 +45,7 @@ html(ng-app="StarterApp")
                 a
                   div(layout="row")
                     div.icon
-                      img(src="./icons/book_ffffff_24.png")
+                      md-icon(md-svg-icon="./icons/ic_library_books_24px.svg")
                     div.text
                       span Books
 
@@ -57,7 +57,7 @@ html(ng-app="StarterApp")
               div#gridTitle
                 h3 {{gridTitle}}
               div#searchField(layout="row", layout-align="end center", flex)
-                md-input-container(md-no-float, flex="50", flex-gt-lg="33")
+                md-input-container(md-no-float, flex="66", flex-gt-lg="33")
                   input(ng-model="searchString", placeholder="Search", aria-label="Search", tabindex="1")
 
           

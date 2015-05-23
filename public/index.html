@@ -26,17 +26,23 @@
             <ul role="navigation" class="nav">
               <li ng-class="selectedClass['music']" class="orange"><a ng-click="sectionClicked('music')">
                   <div layout="row">
-                    <div class="icon"><img src="./icons/headphones_ffffff_24.png"></div>
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_headset_24px.svg"></md-icon>
+                    </div>
                     <div class="text"><span>Music</span></div>
                   </div></a></li>
               <li ng-class="selectedClass['movies']" class="red"><a ng-click="sectionClicked('movies')">
                   <div layout="row">
-                    <div class="icon"><img src="./icons/film_ffffff_24.png"></div>
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_local_movies_24px.svg"></md-icon>
+                    </div>
                     <div class="text"><span>Movies</span></div>
                   </div></a></li>
               <li class="azure"><a>
                   <div layout="row">
-                    <div class="icon"><img src="./icons/book_ffffff_24.png"></div>
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_library_books_24px.svg"></md-icon>
+                    </div>
                     <div class="text"><span>Books</span></div>
                   </div></a></li>
             </ul>
@@ -51,7 +57,7 @@
                 <h3>{{gridTitle}}</h3>
               </div>
               <div id="searchField" layout="row" layout-align="end center" flex>
-                <md-input-container md-no-float flex="50" flex-gt-lg="33">
+                <md-input-container md-no-float flex="66" flex-gt-lg="33">
                   <input ng-model="searchString" placeholder="Search" aria-label="Search" tabindex="1">
                 </md-input-container>
               </div>
