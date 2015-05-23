@@ -13,17 +13,17 @@ html(ng-app="StarterApp")
 
     div(layout="column")
       md-toolbar.md-whiteframe-z2
-        div(layout="row")
-          div.md-toolbar-tools
-            span JoP's Culture
+        div.md-toolbar-tools
+          md-button.md-icon-button(ng-click="toggleMenu()", ng-hide="menuLockedOpen", aria-label="menu")
+            md-icon(md-svg-icon="./icons/ic_menu_24px.svg")
+          span.title JoP's culture
 
     div#main(role="main", layout="row")
       
-      // TODO apply controller to parent, YOLO
       md-sidenav.md-sidenav-left(
         md-component-id="left",
-        md-is-locked-open="$mdMedia('gt-md')")
-        md-content.md-whiteframe-z2
+        md-is-locked-open="menuLockedOpen")
+        md-content(ng-class="{'md-whiteframe-z2': menuLockedOpen}")
           div
             ul.nav(role="navigation")
               li.orange(ng-class="selectedClass['music']")
@@ -57,11 +57,11 @@ html(ng-app="StarterApp")
               div#gridTitle
                 h3 {{gridTitle}}
               div#searchField(layout="row", layout-align="end center", flex)
-                md-input-container(md-no-float, flex="33")
-                  input(ng-model="searchString", placeholder="Search", aria-label="Search")
+                md-input-container(md-no-float, flex="50", flex-gt-lg="33")
+                  input(ng-model="searchString", placeholder="Search", aria-label="Search", tabindex="1")
 
           
-            md-grid-list(md-cols-gt-md="5", md-cols-md="4", md-cols-sm="1", md-row-height="1:1")
+            md-grid-list(md-cols-gt-lg="5", md-cols-lg="5", md-cols-md="4", md-cols-sm="1", md-row-height="1:1")
               md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="item in items | filter: searchString")
                 md-card
                   //img(img-fallback, ng-src="./icons/ic_album_48px.svg")
@@ -70,10 +70,13 @@ html(ng-app="StarterApp")
                   figcaption
                     h3 {{item.title}}
                     h4 {{item.artist}}
-            div.loading
+
+            footer
               div(layout="row", layout-align="space-around")
                 div(ng-show="loading")
                   md-progress-circular(md-mode="indeterminate")
+                //div(ng-show="!hasMoreData")
+                  span Too many books to read, too many movies too watch, too much music to listen, too many games to play.
 
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js')

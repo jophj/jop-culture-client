@@ -119,8 +119,19 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
 
 
 app.controller('AppCtrl', [
-  '$scope', 'Music', '$window',
-  function($scope, Music, $window){
+  '$scope', 'Music', '$window', '$mdMedia', '$mdSidenav',
+  function($scope, Music, $window, $mdMedia, $mdSidenav){
+
+    $scope.$watch(function(){
+      return $mdMedia('gt-lg');
+    }, function(){
+      $scope.menuLockedOpen = $mdMedia('gt-lg');
+      console.log($scope.menuLockedOpen);
+    });
+
+    $scope.toggleMenu = function(){
+      $mdSidenav('left').toggle();
+    }
 
     var buildSelectedClass = function(){
       return {
@@ -155,22 +166,22 @@ app.controller('AppCtrl', [
   }
 ]);
 
-app.controller('sidenavCtrl', [
-  '$scope','$mdUtil','$mdSidenav',
-  function($scope, $mdUtil, $mdSidenav){
-    $scope.toggleLeft = buildToggler('left');
+// app.controller('sidenavCtrl', [
+//   '$scope','$mdUtil','$mdSidenav',
+//   function($scope, $mdUtil, $mdSidenav){
+//     $scope.toggleLeft = buildToggler('left');
 
-    function buildToggler(navID) {
-      var debounceFn =  $mdUtil.debounce(function(){
-        $mdSidenav(navID)
-          .toggle()
-          .then(function () {
-          });
-      },300);
-      return debounceFn;
-    }
-  }
-]);
+//     function buildToggler(navID) {
+//       var debounceFn =  $mdUtil.debounce(function(){
+//         $mdSidenav(navID)
+//           .toggle()
+//           .then(function () {
+//           });
+//       },300);
+//       return debounceFn;
+//     }
+//   }
+// ]);
 
 app.controller('gridCtrl', [
   '$scope','$element', 'DataService',
@@ -189,16 +200,18 @@ app.controller('gridCtrl', [
     $scope.loadMore = function(){
       if (!$scope.loading){
         $scope.loading = true;
-        console.log('load more data');
         DataService($scope.section).loadMore(loadCallback);
       }
     };
     
     var loadCallback = function (error) {
-      console.log('loadCallback');
       $scope.loading = false;
       if (!isFull() && DataService($scope.section).hasMoreData){
         $scope.loadMore();
+      }
+
+      if (!DataService($scope.section).hasMoreData){
+        $scope.hasMoreData = false;
       }
     };
 
@@ -209,6 +222,7 @@ app.controller('gridCtrl', [
     $scope.$watch('section', function(newValue, oldValue){
       $scope.items = DataService(newValue).cachedData;
       $scope.gridTitle = DataService(newValue).name;
+      $scope.hasMoreData = true;
 
       $scope.loadMore();
     });

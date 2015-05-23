@@ -5,6 +5,9 @@ html{
 body{
   height: 100%;
 }
+.title{
+  font-weight: 200;
+}
 #main{
   height: 100%;
 }
@@ -50,19 +53,17 @@ body{
   margin-right: 16px;
   text-overflow: ellipsis;
   white-space: nowrap;
-  overflow: hidden;  
+  overflow: hidden;
 }
 
-#gridList .loading{
+#gridList footer{
   margin-top: 48px;
   height: 50px;
 }
 
-md-sidenav{
-  z-index: 1;
+md-sidenav.md-locked-open{
+  z-index: 2;
   overflow: visible;
-}
-.md-locked-open{
   width: 256px !important;
   min-width: 256px !important;
   max-width: 256px !important;
