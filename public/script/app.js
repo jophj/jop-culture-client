@@ -210,9 +210,8 @@ app.controller('gridCtrl', [
         $scope.loadMore();
       }
 
-      if (!DataService($scope.section).hasMoreData){
-        $scope.hasMoreData = false;
-      }
+      $scope.hasMoreData = DataService(newValue).hasMoreData;
+      
     };
 
     $scope.$watch('searchString', function(newValue, oldValue){
@@ -222,7 +221,7 @@ app.controller('gridCtrl', [
     $scope.$watch('section', function(newValue, oldValue){
       $scope.items = DataService(newValue).cachedData;
       $scope.gridTitle = DataService(newValue).name;
-      $scope.hasMoreData = true;
+      $scope.hasMoreData = DataService(newValue).hasMoreData;
 
       $scope.loadMore();
     });
