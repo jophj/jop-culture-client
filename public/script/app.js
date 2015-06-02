@@ -17,11 +17,10 @@ app.factory('Music', function($http){
   };
 });
 app.factory('Movies', function($http){
-  var MUSIC_API = 'https://jop-culture.herokuapp.com/music/';
-  //var MUSIC_API = 'http://localhost:3666/music/';
+  var MOVIES_API = 'http://localhost:3666/movies/';
   return {
     saved: function(offset, limit){
-      return $http.get(MUSIC_API+ 'saved', {params: {"limit": limit, "offset": offset}});
+      return $http.get(MOVIES_API+ 'saved', {params: {"limit": limit, "offset": offset}});
     }
   };
 });
@@ -222,6 +221,11 @@ app.controller('gridCtrl', [
       $scope.items = DataService(newValue).cachedData;
       $scope.gridTitle = DataService(newValue).name;
       $scope.hasMoreData = DataService(newValue).hasMoreData;
+
+      if (newValue == 'music')
+        $scope.mdRowHeight = '1:1';
+      else if (newValue == 'movies')
+        $scope.mdRowHeight = '2:3';
 
       $scope.loadMore();
     });
