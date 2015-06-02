@@ -61,7 +61,7 @@
                   <input ng-model="searchString" placeholder="Search" aria-label="Search" tabindex="1">
                 </md-input-container>
               </div>
-            </div>{{mdRowHeight}}
+            </div>
             <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}">
               <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
                 <md-card>
