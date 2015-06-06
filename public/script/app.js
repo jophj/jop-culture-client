@@ -27,7 +27,7 @@ app.factory('Movies', function($http){
 });  
 app.factory('Books', function($http){
   var BOOKS_API = 'https://jop-culture.herokuapp.com/books/';
-  BOOKS_API = 'http://localhost:3666/books/';
+  //BOOKS_API = 'http://localhost:3666/books/';
   return {
     saved: function(offset, limit){
       return $http.get(BOOKS_API+ 'saved', {params: {"limit": limit, "offset": offset}});
