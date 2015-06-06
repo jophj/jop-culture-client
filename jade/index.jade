@@ -9,7 +9,7 @@ html(ng-app="StarterApp")
     link(rel="stylesheet", href="https://fonts.googleapis.com/css?family=RobotoDraft:100,200,300,400")
     link(rel="stylesheet", href="style.css")
 
-  body(ng-controller="AppCtrl")
+  body(ng-controller="AppCtrl", md-swipe-right="openMenu()", md-swipe-left="closeMenu()")
 
     div(layout="column")
       md-toolbar.md-whiteframe-z2
