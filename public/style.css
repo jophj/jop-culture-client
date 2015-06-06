@@ -63,6 +63,20 @@ body{
   margin-bottom: 32px;
 }
 
+footer .message{
+  font-weight: 300;
+  padding-left: 15%;
+  padding-right: 15%;
+  text-align: center;
+
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+  color: #ccc;
+}
+
 md-sidenav.md-locked-open{
   z-index: 2;
   overflow: visible;
@@ -70,6 +84,7 @@ md-sidenav.md-locked-open{
   min-width: 256px !important;
   max-width: 256px !important;
 }
+
 ul.nav{
   list-style: none;
   padding: 0;
