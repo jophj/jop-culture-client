@@ -186,23 +186,6 @@ app.controller('AppCtrl', [
   }
 ]);
 
-// app.controller('sidenavCtrl', [
-//   '$scope','$mdUtil','$mdSidenav',
-//   function($scope, $mdUtil, $mdSidenav){
-//     $scope.toggleLeft = buildToggler('left');
-
-//     function buildToggler(navID) {
-//       var debounceFn =  $mdUtil.debounce(function(){
-//         $mdSidenav(navID)
-//           .toggle()
-//           .then(function () {
-//           });
-//       },300);
-//       return debounceFn;
-//     }
-//   }
-// ]);
-
 app.controller('gridCtrl', [
   '$scope','$element', 'DataService',
   function($scope, $element, DataService){
@@ -246,6 +229,8 @@ app.controller('gridCtrl', [
       if (newValue == 'music')
         $scope.mdRowHeight = '1:1';
       else if (newValue == 'movies')
+        $scope.mdRowHeight = '2:3';
+      else if (newValue == 'books')
         $scope.mdRowHeight = '2:3';
 
       $scope.loadMore();

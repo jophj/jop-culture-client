@@ -20,10 +20,10 @@ html(ng-app="StarterApp")
 
     div#main(role="main", layout="row")
       
-      md-sidenav.md-sidenav-left(
+      md-sidenav.md-sidenav-left.md-whiteframe-z2(
         md-component-id="left",
         md-is-locked-open="menuLockedOpen")
-        md-content(ng-class="{'md-whiteframe-z2': menuLockedOpen}")
+        md-content
           div
             ul.nav(role="navigation")
               li.orange(ng-class="selectedClass['music']")
