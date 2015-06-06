@@ -41,8 +41,8 @@ html(ng-app="StarterApp")
                     div.text
                       span Movies
                       
-              li.azure
-                a
+              li.azure(ng-class="selectedClass['books']")
+                a(ng-click="sectionClicked('books')")
                   div(layout="row")
                     div.icon
                       md-icon(md-svg-icon="./icons/ic_library_books_24px.svg")
@@ -75,7 +75,7 @@ html(ng-app="StarterApp")
                 div(ng-show="loading")
                   md-progress-circular(md-mode="indeterminate")
                 div(ng-show="!hasMoreData")
-                  span Too many books to read, too many movies too watch, too much music to listen, too many games to play.
+                  span Too many books to read, too many movies too watch, too much music to listen, too many games to play, too many lives to live.
 
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js')
     script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js')

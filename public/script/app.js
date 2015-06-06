@@ -24,9 +24,18 @@ app.factory('Movies', function($http){
       return $http.get(MOVIES_API+ 'saved', {params: {"limit": limit, "offset": offset}});
     }
   };
+});  
+app.factory('Books', function($http){
+  var BOOKS_API = 'https://jop-culture.herokuapp.com/books/';
+  BOOKS_API = 'http://localhost:3666/books/';
+  return {
+    saved: function(offset, limit){
+      return $http.get(BOOKS_API+ 'saved', {params: {"limit": limit, "offset": offset}});
+    }
+  };
 });
 
-app.factory('DataProvider', ['Music', 'Movies', function(Music, Movies){
+app.factory('DataProvider', ['Music', 'Movies', 'Books', function(Music, Movies, Books){
 
   /* Here's the configurations of data providers */
   var providers = {
@@ -35,6 +44,9 @@ app.factory('DataProvider', ['Music', 'Movies', function(Music, Movies){
     },
     "movies": {
       "saved": Movies.saved
+    },
+    "books": {
+      "saved": Books.saved
     }
   };
 
@@ -51,8 +63,6 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
   var Loader = function(section){
     this.section = section;
 
-    //TODO BUG backend. Loading from offset i build first album even if is already build
-    // at offset i-1 thus, duplicating album.
     this.loadMore = function(callback){
       var dataService = dataServices[section];
 
@@ -78,7 +88,6 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
             dataService.isLoading = false;
             if (callback)
               callback(error);
-            //console.log(error);
           });
       }
       else{
@@ -108,6 +117,15 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
       isLoading: false,
       hasMoreData: true,
       loadMore: new Loader('movies').loadMore
+    },
+    "books": {
+      cachedData: [],
+      name: 'Books',
+      offset: 0,
+      oldOffset: -1,
+      isLoading: false,
+      hasMoreData: true,
+      loadMore: new Loader('books').loadMore
     }
   };
 
@@ -119,14 +137,13 @@ app.factory('DataService', ['DataProvider', function(DataProvider){
 
 
 app.controller('AppCtrl', [
-  '$scope', 'Music', '$window', '$mdMedia', '$mdSidenav',
-  function($scope, Music, $window, $mdMedia, $mdSidenav){
+  '$scope', '$window', '$mdMedia', '$mdSidenav',
+  function($scope, $window, $mdMedia, $mdSidenav){
 
     $scope.$watch(function(){
       return $mdMedia('gt-lg');
     }, function(){
       $scope.menuLockedOpen = $mdMedia('gt-lg');
-      console.log($scope.menuLockedOpen);
     });
 
     $scope.toggleMenu = function(){
@@ -140,6 +157,9 @@ app.controller('AppCtrl', [
         },
         "movies": {
           "selected": $scope.section == 'movies'
+        },
+        "books": {
+          "selected": $scope.section == 'books'
         }
       };
     };
@@ -210,7 +230,7 @@ app.controller('gridCtrl', [
         $scope.loadMore();
       }
 
-      $scope.hasMoreData = DataService(newValue).hasMoreData;
+      $scope.hasMoreData = DataService($scope.section).hasMoreData;
       
     };
 
