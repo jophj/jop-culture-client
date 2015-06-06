@@ -62,7 +62,7 @@
                 </md-input-container>
               </div>
             </div>
-            <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}">
+            <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}" autofocus>
               <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
                 <md-card>
                   <!--img(img-fallback, ng-src="./icons/ic_album_48px.svg")--><img img-fallback ng-src="{{item.imageUrl}}">
