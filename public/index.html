@@ -15,12 +15,12 @@
         <div class="md-toolbar-tools">
           <md-button ng-click="toggleMenu()" ng-hide="menuLockedOpen" aria-label="menu" class="md-icon-button">
             <md-icon md-svg-icon="./icons/ic_menu_24px.svg"></md-icon>
-          </md-button><span class="title">JoP's culture</span>
+          </md-button><span class="title">My culture</span>
         </div>
       </md-toolbar>
     </div>
     <div id="main" role="main" layout="row">
-      <md-sidenav md-component-id="left" md-is-locked-open="menuLockedOpen" class="md-sidenav-left md-whiteframe-z2">
+      <md-sidenav md-component-id="left" md-is-locked-open="menuLockedOpen" ng-class="{'sidenav-top-margin': !menuLockedOpen}" class="md-sidenav-left md-whiteframe-z2">
         <md-content>
           <div>
             <ul role="navigation" class="nav">

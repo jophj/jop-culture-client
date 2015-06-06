@@ -16,13 +16,14 @@ html(ng-app="StarterApp")
         div.md-toolbar-tools
           md-button.md-icon-button(ng-click="toggleMenu()", ng-hide="menuLockedOpen", aria-label="menu")
             md-icon(md-svg-icon="./icons/ic_menu_24px.svg")
-          span.title JoP's culture
+          span.title My culture
 
     div#main(role="main", layout="row")
       
       md-sidenav.md-sidenav-left.md-whiteframe-z2(
         md-component-id="left",
-        md-is-locked-open="menuLockedOpen")
+        md-is-locked-open="menuLockedOpen",
+        ng-class="{'sidenav-top-margin': !menuLockedOpen}")
         md-content
           div
             ul.nav(role="navigation")
