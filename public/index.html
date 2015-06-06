@@ -38,7 +38,7 @@
                     </div>
                     <div class="text"><span>Movies</span></div>
                   </div></a></li>
-              <li class="azure"><a>
+              <li ng-class="selectedClass['books']" class="azure"><a ng-click="sectionClicked('books')">
                   <div layout="row">
                     <div class="icon">
                       <md-icon md-svg-icon="./icons/ic_library_books_24px.svg"></md-icon>
@@ -80,7 +80,7 @@
                 <div ng-show="loading">
                   <md-progress-circular md-mode="indeterminate"></md-progress-circular>
                 </div>
-                <div ng-show="!hasMoreData"><span>Too many books to read, too many movies too watch, too much music to listen, too many games to play.</span></div>
+                <div ng-show="!hasMoreData"><span>Too many books to read, too many movies too watch, too much music to listen, too many games to play, too many lives to live.</span></div>
               </div>
             </footer>
           </section>
