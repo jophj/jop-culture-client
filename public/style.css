@@ -38,7 +38,7 @@ body{
   transition: transform .2s ease;
 }
 #gridList md-grid-tile:hover{
-  transform: scale(1.25);
+  transform: scale(1.2);
   z-index: 2;
 }
 #gridList md-grid-tile.ng-enter {

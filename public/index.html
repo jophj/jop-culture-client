@@ -69,8 +69,12 @@
                 </md-card>
                 <md-grid-tile-footer>
                   <figcaption>
-                    <h3>{{item.title}}</h3>
-                    <h4>{{item.artist}}</h4>
+                    <h3>{{item.title}}
+                      <md-tooltip>{{item.title}}</md-tooltip>
+                    </h3>
+                    <h4>{{item.artist}}
+                      <md-tooltip>{{item.artist}}</md-tooltip>
+                    </h4>
                   </figcaption>
                 </md-grid-tile-footer>
               </md-grid-tile>
