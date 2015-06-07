@@ -2,7 +2,7 @@
 <html ng-app="StarterApp">
   <head>
     <meta charset="utf-8">
-    <title>JoP's Culture</title>
+    <title>My culture</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css">
@@ -44,6 +44,13 @@
                       <md-icon md-svg-icon="./icons/ic_library_books_24px.svg"></md-icon>
                     </div>
                     <div class="text"><span>Books</span></div>
+                  </div></a></li>
+              <li ng-class="selectedClass['games']" class="green"><a ng-click="sectionClicked('games')">
+                  <div layout="row">
+                    <div class="icon">
+                      <md-icon md-svg-icon="./icons/ic_library_games_24px.svg"></md-icon>
+                    </div>
+                    <div class="text"><span>Games</span></div>
                   </div></a></li>
             </ul>
           </div>

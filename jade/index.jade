@@ -2,7 +2,7 @@ doctype
 html(ng-app="StarterApp")
   head
     meta(charset='utf-8')
-    title JoP's Culture
+    title My culture
     meta(name='description', content='')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='//ajax.googleapis.com/ajax/libs/angular_material/0.9.4/angular-material.min.css')
@@ -49,6 +49,14 @@ html(ng-app="StarterApp")
                       md-icon(md-svg-icon="./icons/ic_library_books_24px.svg")
                     div.text
                       span Books
+
+              li.green(ng-class="selectedClass['games']")
+                a(ng-click="sectionClicked('games')")
+                  div(layout="row")
+                    div.icon
+                      md-icon(md-svg-icon="./icons/ic_library_games_24px.svg")
+                    div.text
+                      span Games
 
       md-content.container(layout="column", ng-controller="gridCtrl")
         div.grid-container(scroll-load, on-scroll-end="loadMore")

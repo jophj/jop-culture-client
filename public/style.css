@@ -152,3 +152,8 @@ ul.nav{
 .nav > li.azure.selected{
   background-color: #1aa1e1;
 }
+.nav > li.green .icon,
+.nav > li.green:hover,
+.nav > li.green.selected{
+  background-color: #b3c833;
+}
