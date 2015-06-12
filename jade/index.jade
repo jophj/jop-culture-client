@@ -74,7 +74,6 @@ html(ng-app="StarterApp")
                 md-card
                   div
                     img(img-fallback, ng-src="{{item.imageUrl}}")
-                    md-tooltip {{item.title}}
                 md-grid-tile-footer(ng-show="item.title && item.artist")
                   figcaption
                     h3 {{item.title}}

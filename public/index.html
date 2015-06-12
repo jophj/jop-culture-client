@@ -72,9 +72,7 @@
             <md-grid-list md-cols-gt-lg="5" md-cols-lg="5" md-cols-md="4" md-cols-sm="1" md-row-height="{{mdRowHeight}}" autofocus>
               <md-grid-tile md-rowspan="1" md-colspan="1" ng-repeat="item in items | filter: searchString">
                 <md-card>
-                  <div><img img-fallback ng-src="{{item.imageUrl}}">
-                    <md-tooltip>{{item.title}}</md-tooltip>
-                  </div>
+                  <div><img img-fallback ng-src="{{item.imageUrl}}"></div>
                 </md-card>
                 <md-grid-tile-footer ng-show="item.title &amp;&amp; item.artist">
                   <figcaption>
