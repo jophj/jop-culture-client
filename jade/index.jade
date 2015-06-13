@@ -69,17 +69,18 @@ html(ng-app="StarterApp")
                 md-input-container(md-no-float, flex="66", flex-gt-lg="33")
                   input(ng-model="searchString", placeholder="Search", aria-label="Search", tabindex="1")
 
-            md-grid-list(md-cols-gt-lg="5", md-cols-lg="5", md-cols-md="4", md-cols-sm="1", md-row-height="{{mdRowHeight}}", autofocus)
-              md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="item in items | filter: searchString")
-                md-card
-                  div
-                    img(img-fallback, ng-src="{{item.imageUrl}}")
-                md-grid-tile-footer(ng-show="item.title && item.artist")
-                  figcaption
-                    h3 {{item.title}}
-                      md-tooltip {{item.title}}
-                    h4 {{item.artist}}
-                      md-tooltip {{item.artist}}
+            div(ng-repeat="(section, items) in collections", ng-show="currentSection == section")
+              md-grid-list(md-cols-gt-lg="5", md-cols-lg="5", md-cols-md="4", md-cols-sm="1", md-row-height="{{mdRowHeight}}", autofocus)
+                md-grid-tile(md-rowspan="1", md-colspan="1", ng-repeat="item in items | filter: searchString")
+                  md-card
+                    div
+                      img(img-fallback, ng-src="{{item.imageUrl}}")
+                  md-grid-tile-footer(ng-show="item.title && item.artist")
+                    figcaption
+                      h3 {{item.title}}
+                        md-tooltip {{item.title}}
+                      h4 {{item.artist}}
+                        md-tooltip {{item.artist}}
 
             footer
               div(layout="row", layout-align="space-around")
