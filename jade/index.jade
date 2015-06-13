@@ -17,7 +17,7 @@ html(ng-app="StarterApp")
           md-button.md-icon-button(ng-click="toggleMenu()", ng-hide="menuLockedOpen", aria-label="menu")
             md-icon(md-svg-icon="./icons/ic_menu_24px.svg")
           span.title My culture
-
+          p(ng-controller="quoteCtrl").quote {{quote}}
     div#main(role="main", layout="row")
       
       md-sidenav.md-sidenav-left.md-whiteframe-z2(

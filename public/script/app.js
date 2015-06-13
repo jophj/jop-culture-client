@@ -219,6 +219,13 @@ app.controller('AppCtrl', [
   }
 ]);
 
+app.controller('quoteCtrl', [
+  '$scope',
+  function($scope){
+
+  }
+]);
+
 app.controller('gridCtrl', [
   '$scope','$element', 'DataService',
   function($scope, $element, DataService){

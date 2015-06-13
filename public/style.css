@@ -7,6 +7,18 @@ body{
 }
 .title{
   font-weight: 200;
+  width: 256px;
+}
+.quote:before{
+  font-family: Georgia, Serif;
+  content: "\201C";
+  font-size: 3em;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.3em;
+}
+.quote{
+  font-weight: 200;
 }
 #main{
   height: 100%;
