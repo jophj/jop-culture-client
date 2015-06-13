@@ -266,7 +266,7 @@ app.controller('gridCtrl', [
       else if (newValue == 'movies')
         $scope.mdRowHeight = '2:3';
       else if (newValue == 'books')
-        $scope.mdRowHeight = '2:3';
+        $scope.mdRowHeight = '16:25';
       else if (newValue == 'games')
         $scope.mdRowHeight = '8:3';
 
