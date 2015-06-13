@@ -222,7 +222,7 @@ app.controller('AppCtrl', [
 app.controller('quoteCtrl', [
   '$scope',
   function($scope){
-
+    $scope.quote = "Harry's suspension on disbelief blew completely out the window Harry's suspension on disbelief blew completely out the window Harry's suspension on disbelief blew completely out the window Harry's suspension on disbelief blew completely out the window ";
   }
 ]);
 

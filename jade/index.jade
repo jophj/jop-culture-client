@@ -16,7 +16,8 @@ html(ng-app="StarterApp")
         div.md-toolbar-tools
           md-button.md-icon-button(ng-click="toggleMenu()", ng-hide="menuLockedOpen", aria-label="menu")
             md-icon(md-svg-icon="./icons/ic_menu_24px.svg")
-          span.title My culture
+          div.title
+            span My culture
           p(ng-controller="quoteCtrl").quote {{quote}}
     div#main(role="main", layout="row")
       
